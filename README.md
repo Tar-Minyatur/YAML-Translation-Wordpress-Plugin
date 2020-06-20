@@ -63,6 +63,8 @@ There are currently a few additional "features" that I'm still undecided on, but
           shoutout: "Thanks for the awesome YAML translation plugin goes to @Tar-Minyatur"
 
 * The block shortcode can also request a block from a different file: `[textblock file="about-us" id=2]`
+* There is currently an overview of all available and translated text blocks in the administration panel. It's located
+  under `Settings > YAML Translation`
 
 ## Troubleshooting
 

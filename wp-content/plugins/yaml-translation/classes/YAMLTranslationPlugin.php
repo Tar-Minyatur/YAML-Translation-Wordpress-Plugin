@@ -47,7 +47,7 @@ class YAMLTranslatorPlugin {
                 add_options_page(
                     'YAML Translation',
                     'YAML Translation',
-                    'manage_options',
+                    'edit_pages',
                     'yaml-translation.php',
                     function () use ($admin) {
                         $admin->displayAdminPage();

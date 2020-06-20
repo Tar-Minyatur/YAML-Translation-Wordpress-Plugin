@@ -43,7 +43,7 @@ class YAMLTranslator {
         }
 
         if (!is_null($key)) {
-            return $this->repository->get($locale, $file, $key, true);
+            return nl2br(esc_html($this->repository->get($locale, $file, $key, true)));
         } else {
             return '[Text block definition incomplete. Cannot find translation. ☹]';
         }

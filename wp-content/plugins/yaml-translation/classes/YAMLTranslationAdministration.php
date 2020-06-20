@@ -9,8 +9,11 @@ namespace yamlt;
 class YAMLTranslationAdministration {
 
     public function displayAdminPage() {
-        echo '<div class="wrap"><h1>YAML Translation</h1>';
-        echo '</div>';
+        $repository = YAMLTranslationRepository::getInstance();
+        $translations = $repository->getAllTranslations();
+        $defaultLocale = YAMLTranslationRepository::DEFAULT_LOCALE;
+
+        include dirname(__DIR__) . '/templates/admin_options.php';
     }
 
 }

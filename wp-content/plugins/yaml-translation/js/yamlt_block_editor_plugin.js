@@ -1,0 +1,1 @@
+console.log("TODO: Add a convenient button to the block editor to easily add text block.");

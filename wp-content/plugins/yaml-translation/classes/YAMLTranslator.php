@@ -8,17 +8,45 @@ namespace yamlt;
 
 class YAMLTranslator {
 
-    /** @var YAMLTranslationCache **/
-    private $cache;
+    /** @var YAMLTranslationRepository **/
+    private $repository;
+
+    /** @var string */
+    private $defaultFile = 'home';
 
     public function __construct() {
-        $this->cache = YAMLTranslationCache::getInstance();
+        $this->repository = YAMLTranslationRepository::getInstance();
     }
 
     public function translate($input) {
         $locale = get_locale();
-        echo "<pre>Translating to {$locale}: $input</pre>";
-        return $this->cache->get($input, $input);
+        return $this->repository->get($locale, $this->defaultFile, $input, $input);
+    }
+
+    public function setDefaultFile(string $file) {
+        $this->defaultFile = $file;
+    }
+
+    public function insertTextBlock($attributes = [], $content = null, $tag = '') {
+        $locale = get_locale();
+
+        $file = $this->defaultFile;
+        if (is_array($attributes) && array_key_exists('file', $attributes)) {
+            $file = $attributes['file'];
+        }
+
+        $key = null;
+        if (is_array($attributes) && array_key_exists('id', $attributes) && is_numeric($attributes['id'])) {
+            $key = intval($attributes['id']);
+        } else if (!is_null($content)) {
+            $key = $content;
+        }
+
+        if (!is_null($key)) {
+            return $this->repository->get($locale, $file, $key, true);
+        } else {
+            return '[Text block definition incomplete. Cannot find translation. ☹]';
+        }
     }
 
 }

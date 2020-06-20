@@ -12,6 +12,12 @@ text blocks into WordPress pages and posts.
 **This project is in its infancy.** The idea came together on two subsequent nights in the chat of the Folding@home
 developer community and what you see here should be considered nothing more than a proof of concept. :)
 
+## Requirements
+
+* PHP 7.4+
+* PHP YAML extension
+* Wordpress 5.4+
+
 ## Usage
 
 1. Clone/download the repository
@@ -53,6 +59,8 @@ And one of the files might look like this:
     "This is the first block. It will have ID 0.",
     "And the second block will go by ID 2."
     ]
+
+## Extras
 
 There are currently a few additional "features" that I'm still undecided on, but they work for now:
 * If there is a `title` property (as shown above), then this will be available with the ID 'title'

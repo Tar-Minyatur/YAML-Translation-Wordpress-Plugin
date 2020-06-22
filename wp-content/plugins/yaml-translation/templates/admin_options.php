@@ -31,7 +31,7 @@
                         <?php if (!is_string($string)): ?>
                             <pre><?php var_dump($string) ?></pre>
                         <?php else: ?>
-                            <div style="white-space: pre-line"><?= esc_html($string) ?></div>
+                            <div><?= nl2br(esc_html($string)) ?></div>
                         <?php endif ?>
 
                     </td>

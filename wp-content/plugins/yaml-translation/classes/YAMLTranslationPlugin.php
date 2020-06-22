@@ -21,20 +21,9 @@ class YAMLTranslatorPlugin {
     public static function register() {
         $plugin = new YAMLTranslatorPlugin();
 
-        $plugin->registerTranslator();
         $plugin->registerShortcodes();
         $plugin->registerAdministration();
         $plugin->registerLocaleFilter();
-    }
-
-    private function registerTranslator() {
-        add_filter('gettext', function ($translation, $text, $domain = 'default') {
-            if ($domain == 'yaml') {
-                return $this->translator->translate($text);
-            } else {
-                return $translation;
-            }
-        }, 20, 3);
     }
 
     private function registerAdministration() {

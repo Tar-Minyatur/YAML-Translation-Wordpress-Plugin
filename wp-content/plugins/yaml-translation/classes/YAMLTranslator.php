@@ -36,8 +36,8 @@ class YAMLTranslator {
         }
 
         $key = null;
-        if (is_array($attributes) && array_key_exists('id', $attributes) && is_numeric($attributes['id'])) {
-            $key = intval($attributes['id']);
+        if (is_array($attributes) && array_key_exists('id', $attributes)) {
+            $key = is_numeric($attributes['id']) ? intval($attributes['id']) : $attributes['id'];
         } else if (!is_null($content)) {
             $key = $content;
         }

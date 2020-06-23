@@ -34,7 +34,7 @@ class YAMLTranslator {
     }
 
     public function insertTextBlock($attributes = [], $content = null, $tag = '') {
-        $locale = get_locale();
+        $locale = array_key_exists('locale', $_GET) ? $_GET['locale'] : get_locale();
 
         $file = $this->defaultFile;
         if (is_array($attributes) && array_key_exists('file', $attributes)) {

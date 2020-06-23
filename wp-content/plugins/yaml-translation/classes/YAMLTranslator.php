@@ -6,6 +6,8 @@
 
 namespace yamlt;
 
+require plugin_dir_path(__FILE__) . '../lib/Parsedown.php';
+
 class YAMLTranslator {
 
     /** @var YAMLTranslationRepository **/
@@ -14,8 +16,12 @@ class YAMLTranslator {
     /** @var string */
     private $defaultFile = 'home';
 
+    /** @var \Parsedown */
+    private $markdownConverter;
+
     public function __construct() {
         $this->repository = YAMLTranslationRepository::getInstance();
+        $this->markdownConverter = new \Parsedown();
     }
 
     public function translate($input) {
@@ -43,7 +49,13 @@ class YAMLTranslator {
         }
 
         if (!is_null($key)) {
-            return nl2br(esc_html($this->repository->get($locale, $file, $key, true)));
+            $string = esc_html($this->repository->get($locale, $file, $key, true));
+            $string = $this->markdownConverter->line($string);
+            $string = nl2br($string);
+            if (array_key_exists('show_translation_keys', $_GET)) {
+                $string .= sprintf('<div style="display: inline-block; width: auto; text-transform: none; padding: 1px 3px; letter-spacing: 0; font-weight: normal; font-family: monospace; font-size: 10px; color: #fff; background: #000066; border-radius: 5px;">%s</div>', esc_html($key));
+            }
+            return $string;
         } else {
             return '[Text block definition incomplete. Cannot find translation. ☹]';
         }

@@ -80,3 +80,9 @@ Look into the error log of your webserver. The plugin current logs messages ther
 
 If something doesn't work it most likely has to do with a wrong directory or file structure. At the moment the plugin is
 not really flexible. 
+
+## Kudos
+
+Big cheers to the following OpenSource projects that made this one a breeze to set up:
+
+* [Parsedown](https://github.com/erusev/parsedown) (Markdown parser, MIT license)

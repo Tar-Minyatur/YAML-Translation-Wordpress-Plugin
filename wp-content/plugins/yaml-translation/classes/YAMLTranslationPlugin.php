@@ -23,7 +23,6 @@ class YAMLTranslatorPlugin {
 
         $plugin->registerShortcodes();
         $plugin->registerAdministration();
-        $plugin->registerLocaleFilter();
     }
 
     private function registerAdministration() {
@@ -75,15 +74,6 @@ class YAMLTranslatorPlugin {
             }
             return '';
         });
-    }
-
-    private function registerLocaleFilter() {
-        add_filter('locale', function ($locale) {
-            if (array_key_exists('locale', $_GET)) {
-                $locale = $_GET['locale'];
-            }
-            return $locale;
-        }, 1, 1);
     }
 
 }
